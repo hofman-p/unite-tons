@@ -38,6 +38,7 @@ import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { useQuasar, date } from 'quasar';
+import useNotify from '../composables/useNotify';
 import { isValidEmail, isRequired } from '../helpers/validators';
 
 export default defineComponent({
@@ -46,6 +47,7 @@ export default defineComponent({
     const router = useRouter();
     const store = useStore();
     const $q = useQuasar();
+    const { showNotif } = useNotify();
     const isRemembered = ref(false);
     const email = ref('');
     const password = ref('');
@@ -67,7 +69,11 @@ export default defineComponent({
           name: 'movies',
         });
       } catch (e) {
-        // TODO: Notify user (Vue3 composable ??)
+        showNotif({
+          color: 'negative',
+          position: 'bottom-right',
+          message: e.message,
+        });
       }
     };
     return {
