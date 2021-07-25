@@ -1,4 +1,4 @@
-export function someMutation(state, userData) {
+export function setUser(state, userData) {
   state.user = {
     token: userData.user_token,
     email: userData.user_email,
