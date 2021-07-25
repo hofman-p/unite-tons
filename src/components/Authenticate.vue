@@ -10,12 +10,15 @@
       label="Email"
       lazy-rules
       autofocus
+      :rules="[val => isRequired(val) || 'Please type your email',
+      val => isValidEmail(val) || 'Please enter valid email']"
     />
     <q-input
       :type="isPwd ? 'password' : 'text'"
       v-model="password"
       outlined
       lazy-rules
+      :rules="[val => isRequired(val) || 'Please type your password']">
     >
       <template v-slot:append>
         <q-icon
@@ -35,6 +38,7 @@ import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { useQuasar, date } from 'quasar';
+import { isValidEmail, isRequired } from '../helpers/validators';
 
 export default defineComponent({
   name: 'Authenticate',
@@ -62,7 +66,6 @@ export default defineComponent({
         router.push({
           name: 'movies',
         });
-        // TODO: Add rules to inputs
       } catch (e) {
         // TODO: Notify user (Vue3 composable ??)
       }
@@ -70,6 +73,8 @@ export default defineComponent({
     return {
       email,
       password,
+      isValidEmail,
+      isRequired,
       isPwd: ref(true),
       isRemembered,
       onSubmit,
