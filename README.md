@@ -17,7 +17,7 @@ This project has been created in few hours to show how it's possible to reach a 
 You need to have installed:
 * Node.js up to date LTS
 * Google Chrome (Cypress)
-* TMDB api key (you need to register your app online on their website)
+* TMDB api key (you need to register your app online on their website: `https://www.themoviedb.org`)
 
 ## How to start
 1. Type `npm i` to install all modules
