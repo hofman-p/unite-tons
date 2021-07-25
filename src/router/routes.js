@@ -5,9 +5,7 @@ const routes = [
     children: [
       {
         path: '',
-        // TODO: Delete component and implement redirect when navigation guards are ready
-        component: () => import('pages/Login.vue'),
-        // redirect: { name: 'movies' },
+        redirect: { name: 'movies' },
       },
       {
         path: 'login',
