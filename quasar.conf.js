@@ -97,6 +97,7 @@ module.exports = configure((ctx) => ({
     // Quasar plugins
     plugins: [
       'Cookies',
+      'Notify',
     ],
   },
 
