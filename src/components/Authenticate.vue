@@ -31,27 +31,38 @@
 
 </template>
 <script>
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { useQuasar, date } from 'quasar';
 
 export default defineComponent({
   name: 'Authenticate',
   setup() {
     const router = useRouter();
+    const store = useStore();
+    const $q = useQuasar();
     const isRemembered = ref(false);
     const email = ref('');
     const password = ref('');
+    const user = computed(() => store.state.userStore.user);
     const onSubmit = async () => {
       try {
-        // TODO: Fake authentication (axios api calls file
-        // + vuex store dispatch login to api call files)
+        await store.dispatch('userStore/login', { email: email.value, password: password.value });
+        const options = {
+          // httpOnly: true,
+          secure: true,
+        };
         if (isRemembered.value) {
-          // TODO: add cookies option to expire
+          options.expires = date.addToDate(new Date(), { months: 6 });
         }
-        // TODO: Cookies management and user store management
+        $q.cookies.set('user_token', user.value.token, options);
+        $q.cookies.set('user_email', user.value.email, options);
+        $q.cookies.set('user_role', user.value.role, options);
         router.push({
           name: 'movies',
         });
+        // TODO: Add rules to inputs
       } catch (e) {
         // TODO: Notify user (Vue3 composable ??)
       }
