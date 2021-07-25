@@ -14,6 +14,7 @@
       val => isValidEmail(val) || 'Please enter valid email']"
     />
     <q-input
+      class="signin__password"
       :type="isPwd ? 'password' : 'text'"
       v-model="password"
       outlined
@@ -28,8 +29,8 @@
         />
       </template>
     </q-input>
-    <q-checkbox class="full-width" label="Remember me" v-model="isRemembered" />
-    <q-btn class="full-width" label="Submit" type="submit" color="primary" />
+    <q-checkbox class="signin__rememberme full-width" label="Remember me" v-model="isRemembered" />
+    <q-btn class="signin__submit full-width" label="Submit" type="submit" color="primary" />
   </q-form>
 
 </template>
@@ -88,3 +89,13 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="sass" scoped>
+.signin__password
+  margin-top: 1rem
+  margin-bottom: 1rem
+.signin__rememberme
+  margin-bottom: 1rem
+.signin__submit
+  margin-bottom: 1rem
+</style>
