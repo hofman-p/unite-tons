@@ -3,7 +3,24 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
+      {
+        path: '',
+        // TODO: Delete component and implement redirect when navigation guards are ready
+        component: () => import('pages/Login.vue'),
+        // redirect: { name: 'movies' },
+      },
+      {
+        path: 'login',
+        name: 'login',
+        component: () => import('pages/Login.vue'),
+        meta: { requiresAuth: false },
+      },
+      {
+        path: 'movies',
+        name: 'movies',
+        component: () => import('pages/Movies.vue'),
+        meta: { requiresAuth: true },
+      },
     ],
   },
 
