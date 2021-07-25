@@ -12,6 +12,7 @@
       autofocus
       :rules="[val => isRequired(val) || 'Please type your email',
       val => isValidEmail(val) || 'Please enter valid email']"
+      data-cy="login-email"
     />
     <q-input
       class="signin__password"
@@ -19,7 +20,8 @@
       v-model="password"
       outlined
       lazy-rules
-      :rules="[val => isRequired(val) || 'Please type your password']">
+      :rules="[val => isRequired(val) || 'Please type your password']"
+      data-cy="login-password"
     >
       <template v-slot:append>
         <q-icon
@@ -30,7 +32,13 @@
       </template>
     </q-input>
     <q-checkbox class="signin__rememberme full-width" label="Remember me" v-model="isRemembered" />
-    <q-btn class="signin__submit full-width" label="Submit" type="submit" color="primary" />
+    <q-btn
+      class="signin__submit full-width"
+      label="Submit"
+      type="submit"
+      color="primary"
+      data-cy="login-submit
+    "/>
   </q-form>
 
 </template>
